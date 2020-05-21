@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JQuery -->
+    <!-- <script src="jquery-3.5.1.min.js"></script> -->
+
+    <!-- Google JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+
+        let num = 0;
+
+        function plus() {
+            num += 1;
+            // document.getElementById("number").innerText = num;
+            $("#number").text(num);
+            console.log(num);
+        }
+        function minus() {
+            num -= 1;
+            $("#number").text(num);
+            console.log(num);
+        }
+
+    </script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="number">0</div>
+    <button onclick="plus()">올라라</button>
+    <button onclick="minus()">내려라</button>
+
+</body>
+
+</html>

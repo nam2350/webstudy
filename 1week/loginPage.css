@@ -1,0 +1,19 @@
+.wrap{
+    margin: 10px auto;
+    width: 300px;
+}
+
+.title {
+    width: 300px;
+    height: 200px;
+
+    color: white;
+    text-align: center;
+    padding-top: 40px;
+
+    border-radius: 10px;
+
+    background-position: center;
+    background-size: cover;
+    background-image: url(https://www.ancient-origins.net/sites/default/files/field/image/Agesilaus-II-cover.jpg);
+}

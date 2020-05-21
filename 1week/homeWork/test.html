@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+function buttonFunction() {
+    if(document.getElementById("text").value != document.getElementById("hidden1").value) {
+        alert("아이디가 틀렸습니다.");
+    } 
+    if(document.getElementById("password").value != document.getElementById("hidden2").value) {
+        alert("비밀번호가 틀렸습니다.");
+    }
+    if((document.getElementById("text").value == document.getElementById("hidden1").value) && (document.getElementById("password").value == document.getElementById("hidden2").value)) {
+        alert("로그인 되었습니다.");
+    }
+}
+ 
+</script>
+<body>
+    아이디        <input type="text" id="text"/><br/>
+    비밀번호        <input type="password" id="password"/><br/>
+    <input type="button" value="로그인" id="button" onclick="buttonFunction()"/>
+    
+    <input type = "hidden" id="hidden1" value="1"/>
+    <input type = "hidden" id="hidden2" value="2"/>
+        
+</body>
+</html>

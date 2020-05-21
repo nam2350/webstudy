@@ -1,0 +1,22 @@
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.wrap{
+    margin: 5px auto;
+
+    padding-left: 370px;
+    padding-right: 370px;
+}
+
+.product-image {
+    text-align: center;
+}
+.product {
+    display: inline-block;
+}
+
+
+.btn-order{
+    text-align: center;
+}

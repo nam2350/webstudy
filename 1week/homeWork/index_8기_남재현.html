@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping!</title>
+
+    <!-- Goole Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+
+    <!--CSS Link-->
+    <!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+    <style>
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .wrap {
+            margin: 5px auto;
+
+            padding-left: 370px;
+            padding-right: 370px;
+        }
+
+        .product-image {
+            text-align: center;
+        }
+
+        .product {
+            display: inline-block;
+        }
+
+        .btn-order {
+            text-align: center;
+        }
+    </style>
+
+    <!-- 부트스트랩 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- 부트스트랩 JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <!-- 주문 정보 확인 스크립트-->
+    <script>
+
+        function orderProduct() {
+            let orderer = $("#orderer").val();
+            let amount = $("#inputGroupSelect01").val();
+            let addr = $("#addr").val();
+            let phone = $("#phone").val();
+
+            if (orderer == "") {
+                alert("주문자 이름을 입력해주세요");
+            } else if (amount == "-- 수량을 선택해 주세요 --") {
+                alert("수량을 선택해 주세요");
+            }
+            else if (addr == "") {
+                alert("주소를 입력해 주세요");
+            } else if (phone == "") {
+                alert("전화번호를 입력해 주세요");
+            }
+            else {
+                if (amount < 3) {
+                    alert("주문이 완료 되었습니다!!");
+                } else {
+                    alert("2개까지 주문 할 수 있습니다!");
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="wrap">
+
+        <div class="product-image">
+            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-se-black-select-2020?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1586574260051"
+                width="470" height="556">
+        </div>
+
+        <div class="product-description">
+            <div class="product name">
+                <h1>iPhone SE</h1>
+            </div>
+            <div class="product price">
+                <p>₩550,000(1인당 2개까지 주문 가능)</p>
+            </div>
+        </div>
+        <p> iPhone 사상 가장 강력한 칩. 가장 많이 보급된 사이즈. 가장 부담 없는 가격까지. 당신이 손꼽아 기다린 그 모델. 바로 iPhone SE입니다. </p>
+
+        <div class="order-form">
+            <h1>주문하기</h1>
+            <form>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+                    </div>
+                    <input type="text" class="form-control" id="orderer" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">수량</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected disabled>-- 수량을 선택해 주세요 --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">주소</span>
+                    </div>
+                    <input type="text" class="form-control" id="addr" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">전화번호</span>
+                    </div>
+                    <input type="text" class="form-control" id="phone" aria-describedby="basic-addon1">
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-order">
+            <button onclick="orderProduct()" type="button" class="btn btn-primary">주문하기</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
