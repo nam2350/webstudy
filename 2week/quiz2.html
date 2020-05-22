@@ -13,6 +13,11 @@
         div.question-box {
             margin: 10px 0 20px 0;
         }
+
+        .bad {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 
     <script>
@@ -33,10 +38,13 @@
                         let gu_name = mise["MSRSTE_NM"];
                         let gu_mise = mise["IDEX_MVL"];
 
-                        temp_html = `<li> ${gu_name} : ${gu_mise} </li>`;
-                        console.log(temp_html);
-
-                        $('#names-q1').append(temp_html);
+                        if (gu_mise > 70) {
+                            temp_html = `<li class='bad'> ${gu_name} : ${gu_mise} </li>`;
+                            $('#names-q1').append(temp_html);
+                        } else {
+                            temp_html = `<li> ${gu_name} : ${gu_mise} </li>`;
+                            $('#names-q1').append(temp_html);
+                        }
 
                         // console.log(` ${gu_name} : ${gu_mise} `);
                     }
@@ -45,7 +53,7 @@
         }
 
         function q2() {
-            // $('#names-q1').empty();
+            
 
             let temp_html;
             let input_name = $('#input-guName').val();
@@ -62,10 +70,20 @@
                         let gu_mise = mise["IDEX_MVL"];
 
                         if (input_name == gu_name) {
+                            $('#names-q1').empty();
                             temp_html = `<li> ${gu_name} : ${gu_mise} </li>`;
                             console.log(temp_html);
 
-                            $('#names-q1').append(temp_html);
+                            if (gu_mise > 70) {
+                                temp_html = `<li class='bad'> ${gu_name} : ${gu_mise} </li>`;
+                                $('#names-q1').append(temp_html);
+                            } else {
+                                temp_html = `<li> ${gu_name} : ${gu_mise} </li>`;
+                                $('#names-q1').append(temp_html);
+                            }
+                        } else if (input_name == ''){
+                            alert("구 이름을 입력하세요!!");
+                            return ;
                         }
                         // console.log(` ${gu_name} : ${gu_mise} `);
                     }
@@ -73,7 +91,7 @@
             })
             $('#input-guName').val('');
         }
-        function q3(){
+        function q3() {
             $('#names-q1').empty();
         }
     </script>
@@ -89,7 +107,7 @@
         <h2>1. 서울시 OpenAPI(실시간 미세먼지 상태)를 이용하기</h2>
         <p>모든 구의 미세먼지를 표기해주세요</p>
         <p>업데이트 버튼을 누를 때마다 지웠다 새로 씌여져야 합니다.</p>
-        <p><input id='input-guName' type="text"  placeholder="구 이름을 입력하세요"><button onclick="q2()">검색하기</button></p>
+        <p><input id='input-guName' type="text" placeholder="구 이름을 입력하세요"><button onclick="q2()">검색하기</button></p>
         <button onclick="q1()">업데이트</button><button onclick="q3()">삭제</button>
         <ul id="names-q1">
             <li>중구 : 82</li>
@@ -97,7 +115,7 @@
             <li>용산구 : 84</li>
             <li>은평구 : 82</li>
         </ul>
-        
+
     </div>
 </body>
 
