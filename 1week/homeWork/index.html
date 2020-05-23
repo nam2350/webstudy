@@ -31,7 +31,39 @@
             display: inline-block;
         }
 
+        .order-form {
+            margin-top: 10px;
+        }
+
         .btn-order {
+            text-align: center;
+        }
+
+        .usd {
+            display: inline;
+        }
+
+        .exchange-rate {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .order-list {
+            margin-top: 50px;
+        }
+
+        .input-group-text {
+            width: 100px;
+            text-align: center;
+
+        }
+
+        .btn-list-delete {
+            text-align: right;
+        }
+
+        .table {
+            margin-top: 5px;
             text-align: center;
         }
     </style>
@@ -51,33 +83,129 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
 
-    <!-- 주문 정보 확인 스크립트-->
+    <!-- ajax jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- JS -->
     <script>
 
+
+
+        // 환율 API Load
+        $(document).ready(function () {
+
+            console.log('로딩 완료');
+            checkList();
+
+            $.ajax({
+                type: 'GET',
+                url: 'https://api.manana.kr/exchange/rate.json',
+                data: {},
+                success: function (res) {
+                    let dollar = res[1]['rate'];
+                    let won = Math.floor(dollar);
+                    
+                    $('#usd').text('₩' + won.toLocaleString());
+                }
+            })
+
+
+        });
+
+        // 주문 정보 함수
         function orderProduct() {
             let orderer = $("#orderer").val();
             let amount = $("#inputGroupSelect01").val();
             let addr = $("#addr").val();
             let phone = $("#phone").val();
 
+            let isMobileNum = phoneNumCheck(phone);
+            let temp_html;
+
+            console.log(isMobileNum);
+
             if (orderer == "") {
                 alert("주문자 이름을 입력해주세요");
-            } else if (amount == "-- 수량을 선택해 주세요 --") {
+                return;
+            } else if (amount == null) {
                 alert("수량을 선택해 주세요");
+                return;
             }
             else if (addr == "") {
                 alert("주소를 입력해 주세요");
+                return;
             } else if (phone == "") {
                 alert("전화번호를 입력해 주세요");
+                return;
+            } else if(!isMobileNum){
+                alert("휴대폰 형식의 번호를 입력하세요! ex 010-0000-0000");
+                return ;
             }
             else {
                 if (amount < 3) {
                     alert("주문이 완료 되었습니다!!");
                 } else {
                     alert("2개까지 주문 할 수 있습니다!");
+                    return;
                 }
             }
+
+            temp_html = `<tr>
+                        <td>${orderer}</td>
+                        <td>${amount}</td>
+                        <td>${addr}</td>
+                        <td>${phone}</td>
+                    </tr>`
+
+            $('#column-order').append(temp_html);
+            temp_html = '';
+
+            initInput();
+            checkList();
         }
+
+        // 주문 리스트 삭제 함수
+        function listDelete() {
+            $('#column-order').empty();
+            checkList();
+        }
+
+        // 주문 리스트에 데이터가 있는지 체크하는 함수
+        function checkList() {
+
+            let checkTable = $('#table tbody tr').length;
+
+            console.log(checkTable);
+            console.log($('#column-order').html())
+
+            if (checkTable == 0) {
+                $('#order-list').hide();
+            } else {
+                $('#order-list').show();
+            }
+        }
+
+        function initInput() {
+
+            $("#orderer").val('');
+            $("#inputGroupSelect01").val('-- 수량을 선택해 주세요 --');
+            $("#addr").val('');
+            $("#phone").val('');
+
+        }
+
+        // 휴대폰 형식 번호 체크 함수
+        function phoneNumCheck(phoneNum){ 
+
+            let patternNumber = /^010-\d{4}-\d{4}$/;
+
+            if(patternNumber.test(phoneNum)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
     </script>
 
 </head>
@@ -100,22 +228,27 @@
             </div>
         </div>
         <p> iPhone 사상 가장 강력한 칩. 가장 많이 보급된 사이즈. 가장 부담 없는 가격까지. 당신이 손꼽아 기다린 그 모델. 바로 iPhone SE입니다. </p>
+        <div class='exchange-rate'>
+            <p class='usd text'>달러-원 환율 : </p>
+            <p class='usd value' id='usd'></p>
+        </div>
+
 
         <div class="order-form">
-            <h1>주문하기</h1>
+            <h2>주문하기</h2>
             <form>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+                        <span class="input-group-text" id="basic-addon1" style="width: 100px;">주문자 이름</span>
                     </div>
-                    <input type="text" class="form-control" id="orderer" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="orderer" aria-describedby="basic-addon1" >
                 </div>
 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">수량</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01">
+                    <select class="custom-select" id="inputGroupSelect01" >
                         <option selected disabled>-- 수량을 선택해 주세요 --</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -129,20 +262,40 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">주소</span>
                     </div>
-                    <input type="text" class="form-control" id="addr" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="addr" aria-describedby="basic-addon1" >
                 </div>
 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">전화번호</span>
                     </div>
-                    <input type="text" class="form-control" id="phone" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" id="phone" aria-describedby="basic-addon1" 
+                    placeholder="ex)010-0000-0000" pattern="[0-1]{3}-[0-9]{4}-[0-9]{4}" >
                 </div>
             </form>
         </div>
 
         <div class="btn-order">
             <button onclick="orderProduct()" type="button" class="btn btn-primary">주문하기</button>
+        </div>
+
+        <div class='order-list' id='order-list'>
+            <h4 style="font-weight: bold;">주문 리스트</h4>
+            <div align='right'>
+                <button type="button" class="btn btn-danger" onclick="listDelete()">리스트 삭제</button>
+            </div>
+            <table class="table" id='table'>
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">이름</th>
+                        <th scope="col">수량</th>
+                        <th scope="col">주소</th>
+                        <th scope="col">전화번호</th>
+                    </tr>
+                </thead>
+                <tbody id='column-order'>
+                </tbody>
+            </table>
         </div>
     </div>
 
