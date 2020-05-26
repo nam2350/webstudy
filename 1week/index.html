@@ -58,6 +58,55 @@
     <!-- JS -->
     <script>
 
+        // ajax를 이용하여 data를 받아옴
+        $(document).ready(function () {
+
+            $('#cards-box').empty('');
+
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/post",
+                data: {},
+                success: function (res) {
+                    getArticles(res);
+                }
+            })
+        });
+
+        // article을 전부 가져오는 함수
+        function getArticles(res) {
+
+            let articles = res["articles"];
+            if (res['result'] == 'success') {
+
+                for (let i = 0; i < articles.length; i++) {
+
+                    // let article = articles[i];
+                    let { comment, desc, image, title, url } = articles[i];
+
+                    makeCard(comment, desc, image, title, url);
+
+                }
+            } else {
+                alert('서버 오류 입니다.');
+                return;
+            }
+        }
+
+        // 카드 정보 입력 함수
+        function makeCard(comment, desc, image, title, url) {
+            let temp_html = `<div class="card" style="width: 18rem;" id="card">
+                <img class="card-img-top" src=${image} alt="Card image cap">
+                <div class="card-body">
+                    <a class="card-title" href="${url}">${title}</a>
+                    <p class="card-text">${desc}</p>
+                    <a class="card-comment" id="comment">${comment}</a>
+                </div>
+            </div>`
+            $('#cards-box').append(temp_html);
+        }
+
+        // 포스팅박스 열고 닫는 함수
         function openClose() {
 
             let status = $("#post-box").css('display');
@@ -106,8 +155,8 @@
             </p>
         </div>
 
-        <div class="card-columns">
-            <div class="card" style="width: 18rem;">
+        <div class="card-columns" id='cards-box'>
+            <div class="card" style="width: 18rem;" id="card">
                 <img class="card-img-top"
                     src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
                     alt="Card image cap">
@@ -117,7 +166,7 @@
                     <a class="card-comment" id="comment">여기에 코멘트가 들어갑니다.</a>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;" id="card">
                 <img class="card-img-top"
                     src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
                     alt="Card image cap">
@@ -127,7 +176,7 @@
                     <a class="card-comment" id="comment">여기에 코멘트가 들어갑니다.</a>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;" id="card">
                 <img class="card-img-top"
                     src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
                     alt="Card image cap">
@@ -137,7 +186,7 @@
                     <a class="card-comment" id="comment">여기에 코멘트가 들어갑니다.</a>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;" id="card">
                 <img class="card-img-top"
                     src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
                     alt="Card image cap">
@@ -147,7 +196,7 @@
                     <a class="card-comment" id="comment">여기에 코멘트가 들어갑니다.</a>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;" id="card">
                 <img class="card-img-top"
                     src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
                     alt="Card image cap">
@@ -157,7 +206,7 @@
                     <a class="card-comment" id="comment">여기에 코멘트가 들어갑니다.</a>
                 </div>
             </div>
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;" id="card">
                 <img class="card-img-top"
                     src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
                     alt="Card image cap">
