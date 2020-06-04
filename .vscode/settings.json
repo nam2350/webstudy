@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "/Users/Nam/sparta/venv/bin/python3",
+  "python.pythonPath": "venv/bin/python",
   "editor.formatOnSave": true,
   "python.formatting.provider": "black",
   "python.linting.pylintEnabled": true,

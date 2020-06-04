@@ -33,7 +33,7 @@ for chart in genieCharts:
     rankText = chart.select_one("td.number").text.rstrip()
     rank = rankText.strip(" 상 승 " + " 하 강 " + " 유 지 " + " new " + " ")
     title = chart.select_one("td.info > a.title.ellipsis").text.lstrip()
-    artist = chart.select_one("td.info > a.artist.ellipsis").text
+    artist = chart.selecddt_one("td.info > a.artist.ellipsis").text
     # print(rank[:-2].rstrip(), title, artist)
     doc = {"rank": rank[:-2].rstrip(), "title": title, "artist": artist}
     db.geniecharts.insert_one(doc)
