@@ -31,6 +31,16 @@ def read_reviews():
     # 2. 성공 메시지와 함께 리뷰를 보냅니다.
     return jsonify({'result':'success', 'msg': '이 요청은 GET!','books': books})
 
+@app.route('/test', methods=['GET'])
+def test_get():
+
+    return
+
+@app.route('/test', methods=['POST'])
+def test_post():
+
+    return
+
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=2000, debug=True)
