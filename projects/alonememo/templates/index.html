@@ -50,29 +50,59 @@
         success: function (response) {
           if (response['result'] == 'success') {
             alert(response['msg']);
+            let article = response['articles']
+            for (let i = 0; article.length; i++) {
+              let comment = article[i]['comment']
+              let desc = article[i]['desc']
+              let image = article[i]['image']
+              let title = article[i]['title']
+              let url = article[i]['url']
+
+              console.log('image')
+              make_card(comment, desc, image, title, url)
+            }
           }
         }
       })
     }
 
     function make_card(comment, desc, image, title, url) {
-        
+      let html_temp = `<div class="card">
+        <img class="card-img-top"
+          src="${image}"
+          alt="Card image cap">
+        <div class="card-body">
+          <a href="${url}" class="card-title">${title}</a>
+          <p class="card-text">${desc}</p>
+          <p class="card-text comment">${comment}</p>
+        </div>`
+
+      $('#cards-box').append(html_temp)
     }
 
     function posting() {
+
+      let url = $("#posting-url").val()
+      let comment = $("#posting-comment").val()
+
+      if (url == '' || comment == '') {
+        alert("입력해라")
+      }
+
       $.ajax({
         type: "POST",
         url: "/memo",
         data: {
-            'comment' : comment,
-            'desc' : desc,
-            'image' : image,
-            'title' : title,
-            'url' : url
+          'url': url,
+          'comment': comment
         },
         success: function (response) { // 성공하면
           if (response['result'] == 'success') {
-            alert(response['msg']);
+            alert('등록 되었습니다.')
+            window.location.reload();
+          }
+          else {
+            alert('서버오류')
           }
         }
       })
