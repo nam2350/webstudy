@@ -74,7 +74,7 @@
                             </figure>
                         </div>
                         <div class="media-content">
-                            <a href="#" target="_blank" class="star-name title is-4">${name} (좋아요: ${like})</a>
+                            <a href="${url}" target="_blank" class="star-name title is-4">${name} (좋아요: ${like})</a>
                             <p class="subtitle is-6">${recent}</p>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                     if (response['result'] == 'success') {
                         let msg = response['msg'];
                         alert(msg);
-                        window.location.reload()
+                        // window.location.reload()
                     }
                 }
             });
