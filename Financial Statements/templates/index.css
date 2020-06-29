@@ -1,0 +1,49 @@
+#title-imgae{
+    width: 100%;
+    height: 200px;
+}
+.wrap {
+    margin: 2px auto;
+
+    padding-top: 50px;
+    padding-left: 370px;
+    padding-right: 370px;
+  }
+
+.title {
+    font-family: 'Staatliches', cursive;
+    text-align: center;
+    color :navy;
+    padding-bottom: 20px;
+}
+
+.card-img-top{
+    width: auto;
+    height: 20px;
+}
+
+.card-body {
+    height: 5px;
+}
+
+.card-text{
+    text-align: center;
+    font-size: 10px;
+}
+
+.etc-icon{
+    padding-top: 50px;
+    font-size: 5px;
+}
+
+.stockq{
+    margin: 0 auto;
+    width: 50px;
+    border: 2px solid grey;
+    border-radius: 5px;
+    padding: 5px;  
+}
+
+.stockq-icon{
+    margin: 0 auto;
+}

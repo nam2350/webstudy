@@ -19,7 +19,7 @@ def home():
 
 @app.route("/", methods=["GET"])
 def listing():
-
+    
     return jsonify({"result": "success"})
 
 
