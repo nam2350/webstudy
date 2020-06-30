@@ -16,10 +16,13 @@ db = client.dbsparta  # 'dbsparta'라는 이름의 db를 만듭니다.
 def home():
     return render_template("index.html")
 
+@app.route("/report", methods=["POST"])
+def report():
+    return render_template("report_page.html")
 
 @app.route("/", methods=["GET"])
 def listing():
-    
+
     return jsonify({"result": "success"})
 
 

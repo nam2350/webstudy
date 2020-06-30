@@ -10,9 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
 
   <!--CSS Link-->
-  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
 
   <!-- 부트스트랩 CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -31,18 +32,23 @@
 
   <!-- JQuery를 import 합니다 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- JS -->
+  <script src="{{ url_for("static", filename='/scripts/index.js') }}"></script>
+
 </head>
 
 <body>
-  <img id="title-imgae" src="../static/common/title_image.jpeg">
+  <img id="title-imgae" src="../static/image/title_image.jpeg">
   <div class="wrap">
-    <h1 class="title">Financial Statement</h1>
+    <h1 class="title">FINANCIAL STATEMENT</h1>
     <div class="input-group input-group-lg">
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
-        placeholder="회사명을 입력하세요." size=5>
+      <input type="text" class="form-control" id='input-corp' aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg" placeholder="회사명을 입력하세요." size=5>
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-lg">
-          <img src="../static/icon/search_icon.png">
+          <input type="image" src="../static/icon/search_icon.png">
+            <!-- <img src="../static/icon/search_icon.png"> -->
         </span>
       </div>
     </div>

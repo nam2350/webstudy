@@ -1,6 +1,6 @@
 #title-imgae{
     width: 100%;
-    height: 200px;
+    height: 150px;
 }
 .wrap {
     margin: 2px auto;
@@ -11,10 +11,15 @@
   }
 
 .title {
-    font-family: 'Staatliches', cursive;
+    font-family: 'Josefin Sans', sans-serif;
     text-align: center;
-    color :navy;
+    color :#383e56;
     padding-bottom: 20px;
+}
+
+#input-corp
+{
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .card-img-top{
