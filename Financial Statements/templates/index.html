@@ -30,11 +30,11 @@
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous"></script>
 
-  <!-- JQuery를 import 합니다 -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- JS -->
-  <script src="{{ url_for("static", filename='/scripts/index.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for("static", filename='script/index.js') }}"></script>
 
 </head>
 
@@ -42,31 +42,62 @@
   <img id="title-imgae" src="../static/image/title_image.jpeg">
   <div class="wrap">
     <h1 class="title">FINANCIAL STATEMENT</h1>
+
+    <!-- 회사이름 입력 -->
     <div class="input-group input-group-lg">
       <input type="text" class="form-control" id='input-corp' aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-lg" placeholder="회사명을 입력하세요." size=5>
+        aria-describedby="inputGroup-sizing-lg" placeholder="회사명을 입력하세요.">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-lg">
-          <input type="image" src="../static/icon/search_icon.png">
-            <!-- <img src="../static/icon/search_icon.png"> -->
+          <!-- <input type="image" src="../static/icon/search_icon.png" onclick="searchCorp()"> -->
+          <!-- 검색 버튼 -->
+          <button type="button" onclick="searchCorp()">
+            <img src="../static/icon/search_icon.png">
+          </button>
         </span>
       </div>
     </div>
-    <div class='etc-icon'>
-      <a href="http://stockq.club/" target="blank">
-        <div class="stockq">
-          <div class='stockq-icon'>
-            <img src="../static/icon/stockq_icon2.png" class="stockq-icon-image">
-          </div>
-          <div class="stockq-text">
-            Stockq
-          </div>
+
+    <div class='searched-corp'>
+      <div class="card" id="corp-card">
+        <div class="card-body" id="corp-name">
         </div>
-      </a>
+      </div>
     </div>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody id="corp-finstate">
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+    
   </div>
-  </div>
-  </div>
+  
 </body>
 
 </html>

@@ -8,7 +8,7 @@
     padding-top: 50px;
     padding-left: 370px;
     padding-right: 370px;
-  }
+} 
 
 .title {
     font-family: 'Josefin Sans', sans-serif;
@@ -17,38 +17,17 @@
     padding-bottom: 20px;
 }
 
-#input-corp
-{
+#input-corp{
     font-family: 'Noto Sans KR', sans-serif;
 }
-
-.card-img-top{
-    width: auto;
-    height: 20px;
-}
-
-.card-body {
-    height: 5px;
-}
-
-.card-text{
-    text-align: center;
-    font-size: 10px;
-}
-
-.etc-icon{
+.searched-corp{
     padding-top: 50px;
-    font-size: 5px;
+    padding-bottom: 20px;
 }
 
-.stockq{
+#corp-card{
     margin: 0 auto;
-    width: 50px;
-    border: 2px solid grey;
-    border-radius: 5px;
-    padding: 5px;  
+    width: 50%;
+    border: 3px solid #ffcb74
 }
 
-.stockq-icon{
-    margin: 0 auto;
-}
